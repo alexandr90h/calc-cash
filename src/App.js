@@ -1,12 +1,10 @@
 import './App.css';
 import MainForm from './MainForm/MainForm';
-import Results from './Results/Results';
 
-function App(props) {
+function App() {
   return (
     <div className="App">
       <MainForm />
-      <Results />
     </div>
   );
 }
