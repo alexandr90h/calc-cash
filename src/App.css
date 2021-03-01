@@ -1,4 +1,5 @@
 .App {
+  padding: 30px;
   text-align: center;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -11,6 +12,10 @@
   text-align: left;
   vertical-align: middle;
   padding-left: 30px;
+}
+.MuiTableContainer-root {
+  margin: 30px auto;
+  grid-column-start: span 2;
 }
 .App-logo {
   height: 40vmin;

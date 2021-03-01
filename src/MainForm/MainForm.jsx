@@ -1,5 +1,7 @@
 import { TextField, Button, Paper } from '@material-ui/core';
 import { useState } from 'react';
+import * as API from '../api/api';
+
 export default function MainForm() {
   const [thousand, setThousand] = useState(0);
   const [hundred, setHundred] = useState(0);
@@ -12,7 +14,7 @@ export default function MainForm() {
   const [two, setTwo] = useState(0);
   const [one, setOne] = useState(0);
   const [other, setOther] = useState(0);
-  const [sum, setSum] = useState(0);
+  // const [sum, setSum] = useState(0);
   const hendleInputChanga = e => {
     switch (e.target.name) {
       case 'thousand':
@@ -54,20 +56,33 @@ export default function MainForm() {
   };
   const submitCalcForm = e => {
     e.preventDefault();
-    setSum(
+    const sum =
       thousand * 1000 +
-        fiveHundred * 500 +
-        twoHundred * 200 +
-        hundred * 100 +
-        fifty * 50 +
-        twenty * 20 +
-        ten * 10 +
-        five * 5 +
-        two * 2 +
-        one +
-        other,
-    );
+      fiveHundred * 500 +
+      twoHundred * 200 +
+      hundred * 100 +
+      fifty * 50 +
+      twenty * 20 +
+      ten * 10 +
+      five * 5 +
+      two * 2 +
+      one +
+      other;
     console.log(sum);
+    API.addCash({
+      thousand,
+      fiveHundred,
+      twoHundred,
+      hundred,
+      fifty,
+      twenty,
+      ten,
+      five,
+      two,
+      one,
+      other,
+      sum,
+    });
   };
   return (
     <>
