@@ -8,7 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import * as API from '../api/api';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const StyledTableCell = withStyles(theme => ({
@@ -36,17 +35,10 @@ const useStyles = makeStyles({
 });
 
 export default function ListItemsCash() {
+  API.getCash(res => console.log(res));
   const classes = useStyles();
   // const sum = useSelector(state => state.summ);
   const rows = useSelector(state => state.cashList);
-  // const [rows, setRows] = useState([]);
-  // useEffect(async () => {
-  //   console.log(sum);
-  //   await API.getCash().then(({ data }) => {
-  //     setRows(data.list);
-  //   });
-  // }, [sum]);
-  console.log(rows);
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
@@ -74,9 +66,9 @@ export default function ListItemsCash() {
                 {row.createdAt}
               </StyledTableCell>
               <StyledTableCell align="right">{row.thousand}</StyledTableCell>
-              <StyledTableCell align="right">{row.hundred}</StyledTableCell>
               <StyledTableCell align="right">{row.fiveHundred}</StyledTableCell>
               <StyledTableCell align="right">{row.twoHundred}</StyledTableCell>
+              <StyledTableCell align="right">{row.hundred}</StyledTableCell>
               <StyledTableCell align="right">{row.fifty}</StyledTableCell>
               <StyledTableCell align="right">{row.twenty}</StyledTableCell>
               <StyledTableCell align="right">{row.ten}</StyledTableCell>
