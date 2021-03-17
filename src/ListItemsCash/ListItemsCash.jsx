@@ -40,9 +40,10 @@ export default function ListItemsCash() {
   const sum = useSelector(state => state.summ);
   const rows = useSelector(state => state.cashList);
   console.log(rows);
-  useEffect(() => {
-    dispatch(operation.getCash());
-  }, [dispatch, sum]);
+  // useEffect(() => {
+  //   dispatch(operation.getCash());
+  //   console.log(rows);
+  // }, [sum]);
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">

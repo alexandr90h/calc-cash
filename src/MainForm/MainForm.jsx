@@ -1,8 +1,9 @@
 import { TextField, Button, Paper } from '@material-ui/core';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import * as API from '../api/api';
 import summAction from '../redux/action';
+import * as operation from '../redux/operation';
 
 export default function MainForm() {
   const [thousand, setThousand] = useState(0);
@@ -17,6 +18,7 @@ export default function MainForm() {
   const [one, setOne] = useState(0);
   const [other, setOther] = useState(0);
   const dispatch = useDispatch();
+  const sumCash = useSelector(state => state.sum);
   // const [sum, setSum] = useState(0);
   const hendleInputChanga = e => {
     switch (e.target.name) {
@@ -71,7 +73,6 @@ export default function MainForm() {
       two * 2 +
       one +
       other;
-    console.log(sum);
     dispatch(summAction.Summ(sum));
     API.addCash({
       thousand,
@@ -87,7 +88,24 @@ export default function MainForm() {
       other,
       sum,
     });
+    reset();
   };
+  const reset = () => {
+    setThousand(0);
+    setFiveHundred(0);
+    setTwoHundred(0);
+    setHundred(0);
+    setFifty(0);
+    setTwenty(0);
+    setTen(0);
+    setFive(0);
+    setTwo(0);
+    setOne(0);
+    setOther(0);
+  };
+  useEffect(() => {
+    dispatch(operation.getCash());
+  }, [sumCash]);
   return (
     <>
       <form
