@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/calc-cash/static/css/main.f41a5052.chunk.css",
-    "main.js": "/calc-cash/static/js/main.777c081c.chunk.js",
-    "main.js.map": "/calc-cash/static/js/main.777c081c.chunk.js.map",
+    "main.js": "/calc-cash/static/js/main.33dfd6e3.chunk.js",
+    "main.js.map": "/calc-cash/static/js/main.33dfd6e3.chunk.js.map",
     "runtime-main.js": "/calc-cash/static/js/runtime-main.3d7672c5.js",
     "runtime-main.js.map": "/calc-cash/static/js/runtime-main.3d7672c5.js.map",
-    "static/js/2.f2fb009c.chunk.js": "/calc-cash/static/js/2.f2fb009c.chunk.js",
-    "static/js/2.f2fb009c.chunk.js.map": "/calc-cash/static/js/2.f2fb009c.chunk.js.map",
+    "static/js/2.f940b0d3.chunk.js": "/calc-cash/static/js/2.f940b0d3.chunk.js",
+    "static/js/2.f940b0d3.chunk.js.map": "/calc-cash/static/js/2.f940b0d3.chunk.js.map",
     "index.html": "/calc-cash/index.html",
     "static/css/main.f41a5052.chunk.css.map": "/calc-cash/static/css/main.f41a5052.chunk.css.map",
-    "static/js/2.f2fb009c.chunk.js.LICENSE.txt": "/calc-cash/static/js/2.f2fb009c.chunk.js.LICENSE.txt"
+    "static/js/2.f940b0d3.chunk.js.LICENSE.txt": "/calc-cash/static/js/2.f940b0d3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3d7672c5.js",
-    "static/js/2.f2fb009c.chunk.js",
+    "static/js/2.f940b0d3.chunk.js",
     "static/css/main.f41a5052.chunk.css",
-    "static/js/main.777c081c.chunk.js"
+    "static/js/main.33dfd6e3.chunk.js"
   ]
 }
