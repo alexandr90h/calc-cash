@@ -3,10 +3,10 @@ import cashAction from './action';
 import { combineReducers } from 'redux';
 
 const cashList = createReducer([], {
-  [cashAction.getCashSuccess]: (_, action) => action.payload,
+  [cashAction.getCashSuccess]: (state, action) => (state = action.payload),
 });
 const summ = createReducer(0, {
-  [cashAction.Summ]: (_, action) => action.payload,
+  [cashAction.summ]: (state, action) => (state = action.payload),
 });
 export default combineReducers({
   summ,

@@ -18,8 +18,7 @@ export default function MainForm() {
   const [one, setOne] = useState(0);
   const [other, setOther] = useState(0);
   const dispatch = useDispatch();
-  const sumCash = useSelector(state => state.sum);
-  // const [sum, setSum] = useState(0);
+  const sumCash = useSelector(state => state.summ);
   const hendleInputChanga = e => {
     switch (e.target.name) {
       case 'thousand':
@@ -73,7 +72,7 @@ export default function MainForm() {
       two * 2 +
       one +
       other;
-    dispatch(summAction.Summ(sum));
+    dispatch(summAction.summ(sum));
     API.addCash({
       thousand,
       fiveHundred,
@@ -105,7 +104,7 @@ export default function MainForm() {
   };
   useEffect(() => {
     dispatch(operation.getCash());
-  }, [sumCash]);
+  }, [dispatch, sumCash]);
   return (
     <>
       <form

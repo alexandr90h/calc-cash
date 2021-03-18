@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import dateFormat from 'dateformat';
 import { useDispatch, useSelector } from 'react-redux';
 import * as operation from '../redux/operation';
 
@@ -33,17 +34,29 @@ const useStyles = makeStyles({
     minWidth: 700,
   },
 });
+dateFormat.i18n = {
+  dayNames: [
+    'Нд',
+    'Пн',
+    'Вт',
+    'Ср',
+    'Чт',
+    'Пт',
+    'Сб',
+    'Неділя',
+    'Понеділок',
+    'Вівторок',
+    'Середа',
+    'Четвер',
+    "П'ятниця",
+    'Субота',
+  ],
+};
 
 export default function ListItemsCash() {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const sum = useSelector(state => state.summ);
   const rows = useSelector(state => state.cashList);
-  console.log(rows);
-  // useEffect(() => {
-  //   dispatch(operation.getCash());
-  //   console.log(rows);
-  // }, [sum]);
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
@@ -68,7 +81,7 @@ export default function ListItemsCash() {
           {rows.map(row => (
             <StyledTableRow key={row._id}>
               <StyledTableCell component="th" scope="row">
-                {row.createdAt}
+                {dateFormat(row.createdAt, 'mm.dd.yyyy, dddd, HH:MM')}
               </StyledTableCell>
               <StyledTableCell align="right">{row.thousand}</StyledTableCell>
               <StyledTableCell align="right">{row.fiveHundred}</StyledTableCell>
