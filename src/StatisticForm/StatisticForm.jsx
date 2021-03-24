@@ -15,18 +15,53 @@ dateFormat.i18n = {
     'Вівторок',
     'Середа',
     'Четвер',
-    "П'ятниця",
+    'Пятниця',
     'Субота',
   ],
 };
 
 export default function StatisticForm() {
   const rows = useSelector(state => state.cashList);
-  let sum = 0;
-  rows.map(row => {
-    if (dateFormat(row.createdAt, 'dddd') === 'Понеділок') {
-      sum += Number(row.sum);
-    }
-  });
-  return <div>{sum}</div>;
+
+  const setAverageForDay = (objs, day) => {
+    let summ = 0;
+    let i = 0;
+    objs.map(obj => {
+      if (dateFormat(obj.createdAt, 'dddd') === day) {
+        i++;
+        summ += Number(obj.sum);
+      }
+    });
+    return summ / i;
+  };
+  return (
+    <div>
+      <ul>
+        <li>
+          Понеділок:{' '}
+          <span>{String(Math.round(setAverageForDay(rows, 'Понеділок')))}</span>
+        </li>
+        <li>
+          Вівторок:{' '}
+          <span>{String(Math.round(setAverageForDay(rows, 'Вівторок')))}</span>
+        </li>
+        <li>
+          Середа:{' '}
+          <span>{String(Math.round(setAverageForDay(rows, 'Середа')))}</span>
+        </li>
+        <li>
+          Четвер:{' '}
+          <span>{String(Math.round(setAverageForDay(rows, 'Четвер')))}</span>
+        </li>
+        <li>
+          Пятниця:{' '}
+          <span>{String(Math.round(setAverageForDay(rows, 'Пятниця')))}</span>
+        </li>
+        <li>
+          Субота:{' '}
+          <span>{String(Math.round(setAverageForDay(rows, 'Субота')))}</span>
+        </li>
+      </ul>
+    </div>
+  );
 }
