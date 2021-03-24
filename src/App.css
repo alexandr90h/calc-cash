@@ -57,3 +57,10 @@
 .main-form li {
   margin-top: 10px;
 }
+.statistic-box {
+  display: block;
+  grid-column-start: span 2;
+}
+.statistic-list {
+  list-style: none;
+}
