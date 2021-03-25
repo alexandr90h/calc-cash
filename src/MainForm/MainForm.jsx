@@ -176,6 +176,8 @@ export default function MainForm() {
               value={twenty}
             />
           </li>
+        </ul>
+        <ul className="main-form">
           <li>
             <TextField
               id="outlined-basic"

@@ -81,7 +81,7 @@ export default function ListItemsCash() {
           {rows.map(row => (
             <StyledTableRow key={row._id}>
               <StyledTableCell component="th" scope="row">
-                {dateFormat(row.createdAt, 'mm.dd.yyyy, dddd, HH:MM')}
+                {dateFormat(row.createdAt, 'dd.mm.yyyy, dddd, HH:MM')}
               </StyledTableCell>
               <StyledTableCell align="right">{row.thousand}</StyledTableCell>
               <StyledTableCell align="right">{row.fiveHundred}</StyledTableCell>
