@@ -62,4 +62,7 @@
 }
 .statistic-list {
   list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
 }

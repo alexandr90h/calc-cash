@@ -17,7 +17,7 @@ function App() {
       </div>
       {isLoading ? (
         <>
-          <ListItemsCash />
+          <ListItemsCash name="listItemCash" />
           <StatisticForm />
         </>
       ) : (
