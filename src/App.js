@@ -10,15 +10,14 @@ function App() {
   const isLoading = useSelector(state => state.isLoading);
   return (
     <>
-      <MenuNavigation />
+      {/* <MenuNavigation /> */}
       <div className="App">
         <MainForm />
-        {/* <ListItemsCash /> */}
       </div>
       {isLoading ? (
         <>
-          <ListItemsCash name="listItemCash" />
           <StatisticForm />
+          <ListItemsCash name="listItemCash" />
         </>
       ) : (
         <CircularProgress />
