@@ -5,23 +5,33 @@ import MenuNavigation from './MenuNavigation/MenuNavigation';
 import ListItemsCash from './ListItemsCash/ListItemsCash';
 import StatisticForm from './StatisticForm/StatisticForm';
 import { useSelector } from 'react-redux';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 function App() {
   const isLoading = useSelector(state => state.isLoading);
   return (
     <>
-      {/* <MenuNavigation /> */}
-      <div className="App">
-        <MainForm />
-      </div>
-      {isLoading ? (
-        <>
-          <StatisticForm />
+      <MenuNavigation />
+      <Switch>
+        <Route path="/" exact>
+          <div className="App">
+            <MainForm />
+          </div>
+        </Route>
+        <Route path="/stats">
+          {isLoading ? (
+            <>
+              <StatisticForm />
+            </>
+          ) : (
+            <CircularProgress />
+          )}
+        </Route>
+        <Route path="/list">
           <ListItemsCash name="listItemCash" />
-        </>
-      ) : (
-        <CircularProgress />
-      )}
+        </Route>
+        <Redirect to="/" />
+      </Switch>
     </>
   );
 }

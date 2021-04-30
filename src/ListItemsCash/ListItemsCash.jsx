@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,8 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import dateFormat from 'dateformat';
-import { useDispatch, useSelector } from 'react-redux';
-import * as operation from '../redux/operation';
+import { useSelector } from 'react-redux';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -55,7 +54,7 @@ dateFormat.i18n = {
 
 export default function ListItemsCash() {
   const classes = useStyles();
-  const sum = useSelector(state => state.summ);
+  // const sum = useSelector(state => state.summ);
   const rows = useSelector(state => state.cashList);
   return (
     <TableContainer component={Paper}>

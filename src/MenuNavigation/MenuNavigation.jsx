@@ -4,6 +4,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { useState } from 'react';
 import Scroll from 'react-scroll';
+import { Link } from 'react-router-dom';
 // var Scroll = require('react-scroll');
 const useStyles = makeStyles({
   root: {
@@ -35,7 +36,7 @@ export default function MenuNavigation() {
         break;
     }
     setValue(newValue);
-    console.log(nameElem);
+    // console.log(nameElem);
     scroller.scrollTo(nameElem, {
       duration: 1500,
       delay: 100,
@@ -54,9 +55,15 @@ export default function MenuNavigation() {
         textColor="primary"
         centered
       >
-        <Tab label="Item One" />
-        <Tab label="Item Two" />
-        <Tab label="Item Three" />
+        <Link to="/">
+          <Tab label="Форма" />
+        </Link>
+        <Link to="/stats">
+          <Tab label="Графіки" />
+        </Link>
+        <Link to="/list">
+          <Tab label="Список" />
+        </Link>
       </Tabs>
     </Paper>
   );
