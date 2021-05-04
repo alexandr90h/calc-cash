@@ -1,51 +1,24 @@
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { useState } from 'react';
-import Scroll from 'react-scroll';
+import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-// var Scroll = require('react-scroll');
-const useStyles = makeStyles({
+
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    // position: sticky,
-    // top: 0,
+    backgroundColor: theme.palette.background.paper,
   },
-});
+}));
 
 export default function MenuNavigation() {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
-  const Element = Scroll.Element;
-  const scroller = Scroll.scroller;
-  const scroll = Scroll.animateScroll;
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
-    // console.log(newValue);
-    let nameElem = '';
-    switch (newValue) {
-      case 0:
-        scroll.scrollToTop();
-        break;
-      case 1:
-        nameElem = 'listItemCash';
-        break;
-
-      default:
-        break;
-    }
     setValue(newValue);
-    // console.log(nameElem);
-    scroller.scrollTo(nameElem, {
-      duration: 1500,
-      delay: 100,
-      smooth: true,
-      containerId: 'ContainerElementID',
-      offset: 50, // Scrolls to element + 50 pixels down the page
-    });
   };
-
   return (
     <Paper className={classes.root}>
       <Tabs
@@ -55,15 +28,9 @@ export default function MenuNavigation() {
         textColor="primary"
         centered
       >
-        <Link to="/">
-          <Tab label="Форма" />
-        </Link>
-        <Link to="/stats">
-          <Tab label="Графіки" />
-        </Link>
-        <Link to="/list">
-          <Tab label="Список" />
-        </Link>
+        <Tab component={Link} to="/" label="Форма" />
+        <Tab component={Link} to="/stats" label="Графіки" />
+        <Tab component={Link} to="/list" label="Список" />
       </Tabs>
     </Paper>
   );
