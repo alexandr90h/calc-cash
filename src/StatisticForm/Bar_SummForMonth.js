@@ -30,25 +30,43 @@ dateFormat.i18n = {
 };
 export default function Bar_SummForMonth({ rows }) {
   const monthArr = [];
-  let summForMonth = [];
+
+  const counterSummOfMonth = (month, arr) => {
+    return arr
+      .filter(obj => dateFormat(obj.createdAt, 'mm.yyyy') === month)
+      .reduce((summ, obj) => summ + obj.sum, 0);
+  };
+  const randomColor = (itm, transparency) => {
+    let arr = [];
+    let tr = '';
+    transparency ? (tr = transparency) : (tr = '');
+    for (let i = 0; i < itm; i++) {
+      arr.push(
+        '#' +
+          (Math.random().toString(16) + '000000')
+            .substring(2, 8)
+            .toUpperCase() +
+          tr,
+      );
+    }
+    return arr;
+  };
   rows.map(obj => {
     if (!monthArr.includes(dateFormat(obj.createdAt, 'mm.yyyy'))) {
       monthArr.push(dateFormat(obj.createdAt, 'mm.yyyy'));
     }
   });
-  summForMonth = monthArr.map(month =>
-    rows.map(obj => {
-      let summ = 0;
-      if ((obj.createdAt, 'mm.yyyy') === month) {
-        summ + obj.summ;
-      }
-      return summ;
-    }),
-  );
-  console.log(monthArr);
-  console.log(summForMonth);
+  const summOfMonth = monthArr.map(month => counterSummOfMonth(month, rows));
+
   const data = {
     labels: monthArr,
+    datasets: [
+      {
+        label: 'Сума за місяць',
+        data: summOfMonth,
+        backgroundColor: randomColor(monthArr.length, '80'),
+      },
+    ],
   };
   return <Bar data={data} />;
 }

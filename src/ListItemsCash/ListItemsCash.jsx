@@ -9,6 +9,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import dateFormat from 'dateformat';
 import { useSelector } from 'react-redux';
+import { compareAsc, format, parseISO } from 'date-fns';
+import { uk } from 'date-fns/locale';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -33,28 +35,9 @@ const useStyles = makeStyles({
     minWidth: 700,
   },
 });
-dateFormat.i18n = {
-  dayNames: [
-    'Нд',
-    'Пн',
-    'Вт',
-    'Ср',
-    'Чт',
-    'Пт',
-    'Сб',
-    'Неділя',
-    'Понеділок',
-    'Вівторок',
-    'Середа',
-    'Четвер',
-    'Пятниця',
-    'Субота',
-  ],
-};
 
 export default function ListItemsCash() {
   const classes = useStyles();
-  // const sum = useSelector(state => state.summ);
   const rows = useSelector(state => state.cashList);
   return (
     <TableContainer component={Paper}>
@@ -80,7 +63,9 @@ export default function ListItemsCash() {
           {rows.map(row => (
             <StyledTableRow key={row._id}>
               <StyledTableCell component="th" scope="row">
-                {dateFormat(row.createdAt, 'dd.mm.yyyy, dddd, HH:MM')}
+                {format(parseISO(row.createdAt), 'dd.LL.yyyy, EEEE, k:m', {
+                  locale: uk,
+                })}
               </StyledTableCell>
               <StyledTableCell align="right">{row.thousand}</StyledTableCell>
               <StyledTableCell align="right">{row.fiveHundred}</StyledTableCell>

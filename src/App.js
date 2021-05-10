@@ -8,36 +8,41 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import * as operation from './redux/operation';
 import { useEffect } from 'react';
+import SetingsForm from './SetingsForm/SetingsForm';
 
 function App() {
   const isLoading = useSelector(state => state.isLoading);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(operation.getCash());
+    dispatch(operation.getSeting());
   }, [dispatch]);
 
   return (
     <>
       <MenuNavigation />
-      <Switch>
-        <Route path="/" exact>
-          <div className="App">
-            <MainForm />
-          </div>
-        </Route>
-        <Route path="/stats">
-          {isLoading ? (
-            <>
+      {isLoading ? (
+        <>
+          <Switch>
+            <Route path="/" exact>
+              <div className="App">
+                <MainForm />
+              </div>
+            </Route>
+            <Route path="/stats">
               <StatisticForm />
-            </>
-          ) : (
-            <CircularProgress />
-          )}
-        </Route>
-        <Route path="/list">
-          <ListItemsCash />
-        </Route>
-      </Switch>
+            </Route>
+            <Route path="/list">
+              <ListItemsCash />
+            </Route>
+            <Route path="/seting">
+              <SetingsForm />
+            </Route>
+          </Switch>
+        </>
+      ) : (
+        <CircularProgress />
+      )}
     </>
   );
 }

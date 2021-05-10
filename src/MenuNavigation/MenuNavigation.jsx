@@ -31,6 +31,7 @@ export default function MenuNavigation() {
         <Tab component={Link} to="/" label="Форма" />
         <Tab component={Link} to="/stats" label="Графіки" />
         <Tab component={Link} to="/list" label="Список" />
+        <Tab component={Link} to="/seting" label="Настройки" />
       </Tabs>
     </Paper>
   );

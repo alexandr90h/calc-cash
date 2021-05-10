@@ -1,11 +1,12 @@
 import { TextField, Button, Paper } from '@material-ui/core';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import * as API from '../api/api';
 import summAction from '../redux/action';
-import * as operation from '../redux/operation';
+// import * as operation from '../redux/operation';
 
 export default function MainForm() {
+  const setingList = useSelector(state => state.setingList);
   const [thousand, setThousand] = useState(0);
   const [hundred, setHundred] = useState(0);
   const [fiveHundred, setFiveHundred] = useState(0);
@@ -16,7 +17,8 @@ export default function MainForm() {
   const [five, setFive] = useState(0);
   const [two, setTwo] = useState(0);
   const [one, setOne] = useState(0);
-  const [other, setOther] = useState(0);
+  const [other, setOther] = useState(setingList.other ? setingList.other : 0);
+  const dispatch = useDispatch();
   const hendleInputChanga = e => {
     switch (e.target.name) {
       case 'thousand':
@@ -70,7 +72,6 @@ export default function MainForm() {
       two * 2 +
       one +
       other;
-    dispatch(summAction.summ(sum));
     API.addCash({
       thousand,
       fiveHundred,

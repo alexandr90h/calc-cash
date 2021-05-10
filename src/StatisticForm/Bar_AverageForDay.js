@@ -1,30 +1,35 @@
 import { Bar } from 'react-chartjs-2';
 import dateFormat from 'dateformat';
-dateFormat.i18n = {
-  dayNames: [
-    'Нд',
-    'Пн',
-    'Вт',
-    'Ср',
-    'Чт',
-    'Пт',
-    'Сб',
-    'Неділя',
-    'Понеділок',
-    'Вівторок',
-    'Середа',
-    'Четвер',
-    'Пятниця',
-    'Субота',
-  ],
-};
+import date from 'date-and-time';
+// dateFormat.i18n = {
+//   dayNames: [
+//     'Sun',
+//     'Mon',
+//     'Tue',
+//     'Wed',
+//     'Thu',
+//     'Fri',
+//     'Sat',
+//     'Sunday',
+//     'Monday',
+//     'Tuesday',
+//     'Wednesday',
+//     'Thursday',
+//     'Friday',
+//     'Saturday',
+//   ],
+// };
+const pattern = date.compile('dddd');
 
 export default function Bar_AverageForDay({ rows }) {
   const setAverageForDay = (objs, day) => {
     let summ = 0;
     let i = 0;
     objs.map(obj => {
-      if (dateFormat(obj.createdAt, 'dddd') === day) {
+      if (
+        date.parse(obj.createdAt, 'YYYY-MM-DD...').toString().slice(0, 3) ===
+        day
+      ) {
         i++;
         summ += Number(obj.sum);
       }
@@ -37,12 +42,12 @@ export default function Bar_AverageForDay({ rows }) {
       {
         label: 'Середня сума',
         data: [
-          Math.round(setAverageForDay(rows, 'Понеділок')),
-          Math.round(setAverageForDay(rows, 'Вівторок')),
-          Math.round(setAverageForDay(rows, 'Середа')),
-          Math.round(setAverageForDay(rows, 'Четвер')),
-          Math.round(setAverageForDay(rows, 'Пятниця')),
-          Math.round(setAverageForDay(rows, 'Субота')),
+          Math.round(setAverageForDay(rows, 'Mon')),
+          Math.round(setAverageForDay(rows, 'Tue')),
+          Math.round(setAverageForDay(rows, 'Wed')),
+          Math.round(setAverageForDay(rows, 'Thu')),
+          Math.round(setAverageForDay(rows, 'Fri')),
+          Math.round(setAverageForDay(rows, 'Sat')),
         ],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
@@ -67,33 +72,6 @@ export default function Bar_AverageForDay({ rows }) {
 
   return (
     <>
-      {' '}
-      <ul className="statistic-list">
-        <li>
-          Понеділок:{' '}
-          <span>{String(Math.round(setAverageForDay(rows, 'Понеділок')))}</span>
-        </li>
-        <li>
-          Вівторок:{' '}
-          <span>{String(Math.round(setAverageForDay(rows, 'Вівторок')))}</span>
-        </li>
-        <li>
-          Середа:{' '}
-          <span>{String(Math.round(setAverageForDay(rows, 'Середа')))}</span>
-        </li>
-        <li>
-          Четвер:{' '}
-          <span>{String(Math.round(setAverageForDay(rows, 'Четвер')))}</span>
-        </li>
-        <li>
-          Пятниця:{' '}
-          <span>{String(Math.round(setAverageForDay(rows, 'Пятниця')))}</span>
-        </li>
-        <li>
-          Субота:{' '}
-          <span>{String(Math.round(setAverageForDay(rows, 'Субота')))}</span>
-        </li>
-      </ul>
       <Bar
         data={data}
         width={500}

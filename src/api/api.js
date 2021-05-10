@@ -9,3 +9,10 @@ export async function getCash() {
 export async function addCash(item) {
   return await axios.post('', item);
 }
+export async function getSeting() {
+  const { data } = await axios.get('seting');
+  return data.data.list[0];
+}
+export async function addSeting(body) {
+  return await axios.post('seting', body);
+}
