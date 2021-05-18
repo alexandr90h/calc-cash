@@ -1,13 +1,16 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { fade, withStyles, makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import dateFormat from 'dateformat';
 import { Button } from '@material-ui/core';
 import * as API from '../api/api';
+import { format, parseISO } from 'date-fns';
+import { uk } from 'date-fns/locale';
+import * as operation from '../redux/operation';
 
 dateFormat.i18n = {
   monthNames: [
@@ -84,21 +87,32 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SetingsForm() {
-  const monthArr = [];
+  const monthArr = ['all'];
   const { other, visibleMonth } = useSelector(state => state.setingList);
-  const rows = useSelector(state => state.cashList);
-  const [age, setAge] = React.useState('');
-  const classes = useStyles();
   const [data, setData] = useState({ other, visibleMonth });
+  const rows = useSelector(state => state.cashList);
+  const classes = useStyles();
+  const dispatch = useDispatch();
 
   rows.map(obj => {
-    if (!monthArr.includes(dateFormat(obj.createdAt, 'mm.yyyy'))) {
-      monthArr.push(dateFormat(obj.createdAt, 'mm.yyyy'));
+    if (
+      !monthArr.includes(
+        format(parseISO(obj.createdAt), 'LLLL yyyy', {
+          locale: uk,
+        }),
+      )
+    ) {
+      monthArr.push(
+        format(parseISO(obj.createdAt), 'LLLL yyyy', {
+          locale: uk,
+        }),
+      );
     }
   });
-  const submitSetingForm = e => {
+  const submitSetingForm = async e => {
     e.preventDefault();
-    API.addSeting(data);
+    await API.addSeting(data);
+    dispatch(operation.getSeting());
   };
 
   return (

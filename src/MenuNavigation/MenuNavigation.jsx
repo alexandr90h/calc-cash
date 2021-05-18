@@ -14,7 +14,24 @@ const useStyles = makeStyles(theme => ({
 
 export default function MenuNavigation() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(() => {
+    switch (location.pathname) {
+      case '/':
+        return 0;
+        break;
+      case '/stats':
+        return 1;
+        break;
+      case '/list':
+        return 2;
+        break;
+      case '/seting':
+        return 3;
+        break;
+      default:
+        break;
+    }
+  });
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

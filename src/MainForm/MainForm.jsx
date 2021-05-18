@@ -2,7 +2,8 @@ import { TextField, Button, Paper } from '@material-ui/core';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as API from '../api/api';
-import summAction from '../redux/action';
+import * as operation from '../redux/operation';
+
 // import * as operation from '../redux/operation';
 
 export default function MainForm() {
@@ -19,7 +20,12 @@ export default function MainForm() {
   const [one, setOne] = useState(0);
   const [other, setOther] = useState(setingList.other ? setingList.other : 0);
   const dispatch = useDispatch();
+
   const hendleInputChanga = e => {
+    if (Number.isNaN(Number(e.target.value))) {
+      alert('Not number');
+      return;
+    }
     switch (e.target.name) {
       case 'thousand':
         setThousand(Number(e.target.value));
@@ -58,7 +64,7 @@ export default function MainForm() {
         break;
     }
   };
-  const submitCalcForm = e => {
+  const submitCalcForm = async e => {
     e.preventDefault();
     const sum =
       thousand * 1000 +
@@ -72,7 +78,7 @@ export default function MainForm() {
       two * 2 +
       one +
       other;
-    API.addCash({
+    await API.addCash({
       thousand,
       fiveHundred,
       twoHundred,
@@ -86,6 +92,7 @@ export default function MainForm() {
       other,
       sum,
     });
+    dispatch(operation.getCash());
     reset();
   };
   const reset = () => {
@@ -112,8 +119,8 @@ export default function MainForm() {
         <Paper elevation={3} />
         <ul className="main-form">
           <li>
-            <span></span>
             <TextField
+              // type="number"
               id="outlined-basic"
               label="1000"
               variant="outlined"

@@ -13,15 +13,11 @@ const setingList = createReducer(
   },
 );
 
-const summ = createReducer(0, {
-  [cashAction.summ]: (state, action) => (state = action.payload),
-});
 const isLoading = createReducer(false, {
   [cashAction.getCashSuccess]: () => true,
   [cashAction.getSetingSuccess]: () => true,
 });
 export default combineReducers({
-  summ,
   cashList,
   isLoading,
   setingList,

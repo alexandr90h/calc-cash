@@ -1,28 +1,39 @@
 import './App.css';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import MainForm from './MainForm/MainForm';
 import MenuNavigation from './MenuNavigation/MenuNavigation';
-import ListItemsCash from './ListItemsCash/ListItemsCash';
-import StatisticForm from './StatisticForm/StatisticForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import * as operation from './redux/operation';
 import { useEffect } from 'react';
-import SetingsForm from './SetingsForm/SetingsForm';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import { lazy, Suspense } from 'react';
+
+const MainForm = lazy(() =>
+  import('./MainForm/MainForm' /*webpackChunkName:"MainForm"*/),
+);
+const StatisticForm = lazy(() =>
+  import('./StatisticForm/StatisticForm' /*webpackChunkName:"StatisticForm"*/),
+);
+const ListItemsCash = lazy(() =>
+  import('./ListItemsCash/ListItemsCash' /*webpackChunkName:"ListItemsCash"*/),
+);
+const SetingsForm = lazy(() =>
+  import('./SetingsForm/SetingsForm' /*webpackChunkName:"SetingsForm"*/),
+);
 
 function App() {
   const isLoading = useSelector(state => state.isLoading);
   const dispatch = useDispatch();
-  useEffect(() => {
+
+  useEffect(async () => {
+    await dispatch(operation.getSeting());
     dispatch(operation.getCash());
-    dispatch(operation.getSeting());
   }, [dispatch]);
 
   return (
     <>
       <MenuNavigation />
-      {isLoading ? (
-        <>
+      <Suspense fallback={<LinearProgress className="LinearProgressStyles" />}>
+        {isLoading && (
           <Switch>
             <Route path="/" exact>
               <div className="App">
@@ -39,10 +50,8 @@ function App() {
               <SetingsForm />
             </Route>
           </Switch>
-        </>
-      ) : (
-        <CircularProgress />
-      )}
+        )}
+      </Suspense>
     </>
   );
 }

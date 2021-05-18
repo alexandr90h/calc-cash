@@ -50,6 +50,9 @@
     transform: rotate(360deg);
   }
 }
+.main-form-conteiner {
+  padding-top: 20px;
+}
 .main-form {
   list-style: none;
 }
@@ -76,4 +79,17 @@
   flex-direction: column;
   gap: 10px;
   justify-content: center;
+  padding-top: 20px;
+}
+.LinearProgressStyles {
+  margin-top: 3px;
+  padding-top: 5px;
+}
+.listButtonFilter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding-top: 30px;
 }

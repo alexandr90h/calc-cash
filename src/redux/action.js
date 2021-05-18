@@ -8,9 +8,9 @@ const getSetingRequuest = createAction('cash/getSetingRequuest');
 const getSetingSuccess = createAction('cash/getSetingSuccess');
 const getSetingError = createAction('cash/getSetingError');
 
-const summ = createAction('cash/changeSumm');
+const addCashItem = createAction('cash/addCashItem');
 const cashAction = {
-  summ,
+  addCashItem,
   getCashRequuest,
   getCashSuccess,
   getCashError,
