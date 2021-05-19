@@ -12,35 +12,6 @@ import { format, parseISO } from 'date-fns';
 import { uk } from 'date-fns/locale';
 import * as operation from '../redux/operation';
 
-dateFormat.i18n = {
-  monthNames: [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-    'Січень',
-    'Лютий',
-    'Березень',
-    'Квітень',
-    'Травень',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ],
-};
-
 const BootstrapInput = withStyles(theme => ({
   root: {
     'label + &': {

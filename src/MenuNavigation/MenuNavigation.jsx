@@ -18,16 +18,14 @@ export default function MenuNavigation() {
     switch (location.pathname) {
       case '/':
         return 0;
-        break;
       case '/stats':
         return 1;
-        break;
       case '/list':
         return 2;
-        break;
-      case '/seting':
+      case '/debts':
         return 3;
-        break;
+      case '/seting':
+        return 4;
       default:
         break;
     }
@@ -48,6 +46,7 @@ export default function MenuNavigation() {
         <Tab component={Link} to="/" label="Форма" />
         <Tab component={Link} to="/stats" label="Графіки" />
         <Tab component={Link} to="/list" label="Список" />
+        <Tab component={Link} to="/debts" label="Борги" />
         <Tab component={Link} to="/seting" label="Настройки" />
       </Tabs>
     </Paper>

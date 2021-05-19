@@ -19,6 +19,9 @@ const ListItemsCash = lazy(() =>
 const SetingsForm = lazy(() =>
   import('./SetingsForm/SetingsForm' /*webpackChunkName:"SetingsForm"*/),
 );
+const DebtsForm = lazy(() =>
+  import('./DebtsForm/DebtsForm' /*webpackChunkName:"DebtsForm"*/),
+);
 
 function App() {
   const isLoading = useSelector(state => state.isLoading);
@@ -45,6 +48,9 @@ function App() {
             </Route>
             <Route path="/list">
               <ListItemsCash />
+            </Route>
+            <Route path="/debts">
+              <DebtsForm />
             </Route>
             <Route path="/seting">
               <SetingsForm />
