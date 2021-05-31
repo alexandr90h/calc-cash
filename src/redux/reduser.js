@@ -13,12 +13,26 @@ const setingList = createReducer(
   },
 );
 
+const debtsList = createReducer([], {
+  [cashAction.getDebtsgSuccess]: (state, action) => (state = action.payload),
+});
+
+const debtById = createReducer(
+  {},
+  {
+    [cashAction.getDebtByIdgSuccess]: (state, action) =>
+      (state = action.payload),
+  },
+);
+
 const isLoading = createReducer(false, {
-  [cashAction.getCashSuccess]: () => true,
+  // [cashAction.getCashSuccess]: () => true,
   [cashAction.getSetingSuccess]: () => true,
 });
 export default combineReducers({
   cashList,
   isLoading,
   setingList,
+  debtsList,
+  debtById,
 });

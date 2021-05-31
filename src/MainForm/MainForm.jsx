@@ -1,5 +1,5 @@
 import { TextField, Button, Paper } from '@material-ui/core';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as API from '../api/api';
 import * as operation from '../redux/operation';
@@ -8,6 +8,8 @@ import * as operation from '../redux/operation';
 
 export default function MainForm() {
   const setingList = useSelector(state => state.setingList);
+  const isLoading = useSelector(state => state.isLoading);
+
   const [thousand, setThousand] = useState(0);
   const [hundred, setHundred] = useState(0);
   const [fiveHundred, setFiveHundred] = useState(0);
@@ -19,6 +21,7 @@ export default function MainForm() {
   const [two, setTwo] = useState(0);
   const [one, setOne] = useState(0);
   const [other, setOther] = useState(setingList.other ? setingList.other : 0);
+
   const dispatch = useDispatch();
 
   const hendleInputChanga = e => {
@@ -108,6 +111,7 @@ export default function MainForm() {
     setOne(0);
     setOther(0);
   };
+  useEffect(() => {}, [setingList]);
   return (
     <>
       <form

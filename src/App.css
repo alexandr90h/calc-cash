@@ -119,6 +119,13 @@
   margin: 0;
   padding: 0;
 }
+.card button {
+  border: none;
+  background-color: white;
+}
+/* .card button:hover {
+  width: 30px;
+} */
 .card-title {
   display: flex;
   align-items: center;
@@ -139,6 +146,7 @@
 .card-icon-box {
   display: flex;
   justify-content: flex-end;
+  align-items: flex-end;
   gap: 20px;
   border-top: 1px solid rgb(212, 210, 210);
   padding-top: 10px;

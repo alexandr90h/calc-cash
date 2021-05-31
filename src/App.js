@@ -30,33 +30,32 @@ function App() {
   useEffect(async () => {
     await dispatch(operation.getSeting());
     dispatch(operation.getCash());
+    dispatch(operation.getDebts());
   }, [dispatch]);
 
   return (
     <>
       <MenuNavigation />
       <Suspense fallback={<LinearProgress className="LinearProgressStyles" />}>
-        {isLoading && (
-          <Switch>
-            <Route path="/" exact>
-              <div className="App">
-                <MainForm />
-              </div>
-            </Route>
-            <Route path="/stats">
-              <StatisticForm />
-            </Route>
-            <Route path="/list">
-              <ListItemsCash />
-            </Route>
-            <Route path="/debts">
-              <DebtsForm />
-            </Route>
-            <Route path="/seting">
-              <SetingsForm />
-            </Route>
-          </Switch>
-        )}
+        <Switch>
+          <Route path="/" exact>
+            <div className="App">
+              <MainForm />
+            </div>
+          </Route>
+          <Route path="/stats">
+            <StatisticForm />
+          </Route>
+          <Route path="/list">
+            <ListItemsCash />
+          </Route>
+          <Route path="/debts">
+            <DebtsForm />
+          </Route>
+          <Route path="/seting">
+            <SetingsForm />
+          </Route>
+        </Switch>
       </Suspense>
     </>
   );

@@ -20,3 +20,23 @@ export const getSeting = () => async dispatch => {
     dispatch(cashAction.getSetingError(error.message));
   }
 };
+
+export const getDebts = () => async dispatch => {
+  dispatch(cashAction.getDebtsRequuest());
+  try {
+    const res = await API.getDebtsAll();
+    dispatch(cashAction.getDebtsgSuccess(res));
+  } catch (error) {
+    dispatch(cashAction.getDebtsError(error.message));
+  }
+};
+
+export const getDebtById = id => async dispatch => {
+  dispatch(cashAction.getDebtByIdRequuest());
+  try {
+    const res = await API.getDebtById(id);
+    dispatch(cashAction.getDebtByIdgSuccess(res));
+  } catch (error) {
+    dispatch(cashAction.getDebtByIdError(error.message));
+  }
+};
